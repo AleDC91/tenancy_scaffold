@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Tenant\ProfileController;
 use App\Http\Controllers\Tenant\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Tenant\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Tenant\Auth\EmailVerificationNotificationController;
@@ -91,6 +92,10 @@ Route::middleware([
             ->name('logout');
 
         Route::get('/dashboard', [TenantController::class, 'dashboard']);
+
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     });
 });

@@ -1,13 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Prova, tenant dashboard {{tenant()}} </h1>
-    <p>{{Auth::user()->name}}</p>
-</body>
-</html>
+<x-tenant-layout>
+
+    @role('admin')
+    Welcome Admin
+    <x-tenantDashboard.admin />
+    @endrole
+
+    @role('employee')
+    Welcome Employee
+    <x-tenantDashboard.employee />
+    @endrole
+
+    @role('client')
+    Welcome Client
+    <x-tenantDashboard.client />
+    @endrole
+
+
+</x-tenant-layout>

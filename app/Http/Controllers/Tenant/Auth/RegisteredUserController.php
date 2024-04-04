@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -46,8 +47,13 @@ class RegisteredUserController extends Controller
                 $parts = explode('.', $host);
                 $domainName = $parts[0];
 
-                Storage::disk('domains')->makeDirectory($domainName . '/images');
-                Storage::disk('domains')->makeDirectory($domainName . '/documents');
+                $ImagesPath = public_path('domains/' . $domainName . $user->id . '/images');
+
+                // valuta servizio di filesystem esterno come amazon s3, perchè così non è scalabile
+
+                if (!File::isDirectory($ImagesPath)) {
+                    File::makeDirectory($ImagesPath, 0775, true, true);
+                }
 
                 // Effettua l'accesso automatico dell'utente appena creato
                 Auth::login($user);

@@ -18,17 +18,14 @@
 
 <body class=" font-sans text-gray-900 antialiased">
     @php
-    
-    // Ottieni l'URL corrente
-    $currentUrl = request()->url();
 
-    // Verifica se l'URL contiene almeno due punti (indicando un sottodominio)
-    $isSubdomain = substr_count($currentUrl, '.') >= 1;
+        $currentUrl = request()->url();
 
-        $bgClass = $isSubdomain  ? 'gradient-secondary' : 'gradient';
+        $isSubdomain = substr_count($currentUrl, '.') >= 1;
+
+        $bgClass = $isSubdomain ? 'gradient-secondary' : 'gradient';
     @endphp
-    <div
-        class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 {{$bgClass}}" >
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 {{ $bgClass }}">
         <div>
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />

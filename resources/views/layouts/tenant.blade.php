@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,17 +10,15 @@
     <meta name="description" content={{ config('tenancy.central_domains')[0] . 'a description' }} />
     <meta name="keywords" content="" />
     <meta name="author" content="" />
-    {{-- <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" /> --}}
-    <!--Replace with your tailwind.css once created-->
+    {{-- Fonts --}}
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
-    <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
 </head>
-@include('layouts.navigation')
+@include('layouts.tenantNavigation')
 <!-- Page Content -->
-<main>
+<main class="pt-20">
     {{ $slot }}
 </main>
 
@@ -114,8 +111,8 @@
               <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
               -->
 
-@vite('resources/js/appHeader.js')
-@vite('resources/js/appNavDropdown.js')
+
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
 @stack('app_scripts')
 

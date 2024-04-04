@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_image',
     ];
 
     /**
@@ -51,5 +52,10 @@ class User extends Authenticatable
     public function isSuperAdmin()
     {
         return $this->roles()->where('name', 'superadmin')->exists();
+    }
+
+    public function isAdmin()
+    {
+        return $this->roles()->where('name', 'admin')->exists();
     }
 }
