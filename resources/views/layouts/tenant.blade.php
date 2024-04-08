@@ -18,7 +18,18 @@
 </head>
 @include('layouts.tenantNavigation')
 <!-- Page Content -->
-<main class="pt-20">
+<main class="main-with-navbar">
+    @if (session('success'))
+        <x-success-alert>
+            {{ session('success') }}
+        </x-success-alert>
+    @endif
+
+    @if (session('error'))
+        <x-error-alert>
+            {{ session('error') }}
+        </x-error-alert>
+    @endif
     {{ $slot }}
 </main>
 
@@ -112,7 +123,7 @@
               -->
 
 
-              <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
 @stack('app_scripts')
 

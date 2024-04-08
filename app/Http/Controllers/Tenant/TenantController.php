@@ -11,6 +11,11 @@ class TenantController extends Controller
         return view('tenant.dashboard');
     }
 
+    public function admin() {
+        return view('tenant.admin');
+    }
+
+
     public function index(){
         return view('tenant.welcome');
     }

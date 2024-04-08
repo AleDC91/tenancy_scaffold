@@ -13,6 +13,8 @@ use App\Http\Controllers\Tenant\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Tenant\Auth\RegisteredUserController;
 use App\Http\Controllers\Tenant\Auth\VerifyEmailController;
 use App\Http\Controllers\Tenant\TenantController;
+use App\Http\Controllers\YearlyDeadlineController;
+use App\Http\Middleware\CheckRole;
 use Illuminate\Support\Facades\Route;
 
 use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
@@ -91,11 +93,13 @@ Route::middleware([
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
             ->name('logout');
 
-        Route::get('/dashboard', [TenantController::class, 'dashboard']);
 
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+        Route::get('/dashboard', [TenantController::class, 'dashboard'])->name('tenant.dashboard');
+        Route::get('/admin', [TenantController::class, 'admin'])->name('tenant.admin')->middleware('role:admin');
+        Route::resource('/deadlines', YearlyDeadlineController::class)->middleware('role:admin,employee');
     });
 });

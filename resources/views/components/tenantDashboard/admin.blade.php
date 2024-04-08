@@ -1,3 +1,6 @@
 <div>
-    Happiness is not something readymade. It comes from your own actions. - Dalai Lama 
+    <x-dashboard-header />
+</div>
+<div>
+    <x-dashboard-center />
 </div>

@@ -1,19 +1,21 @@
-<x-tenant-layout>
+@role('admin')
+    <x-tenant-dashboard>
+        <x-sidebar>
+            <x-tenantDashboard.admin />
+        </x-sidebar>
+    </x-tenant-dashboard>
+@endrole
 
-    @role('admin')
-    Welcome Admin
-    <x-tenantDashboard.admin />
-    @endrole
+@role('employee')
+    <x-tenant-dashboard>
+        <x-sidebar>
+            <x-tenantDashboard.employee />
+        </x-sidebar>
+    </x-tenant-dashboard>
+@endrole
 
-    @role('employee')
-    Welcome Employee
-    <x-tenantDashboard.employee />
-    @endrole
-
-    @role('client')
-    Welcome Client
-    <x-tenantDashboard.client />
-    @endrole
-
-
-</x-tenant-layout>
+@role('client')
+    <x-tenant-layout>
+        <x-tenantDashboard.client />
+    </x-tenant-layout>
+@endrole

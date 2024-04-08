@@ -41,6 +41,8 @@ class RegisteredUserController extends Controller
                     'password' => $userData['password'],
                 ]);
                 $this->seedRoles();
+                $this->seedPermissions();
+
                 $user->assignRole('admin');
 
                 $host = request()->getHost();
@@ -71,6 +73,14 @@ class RegisteredUserController extends Controller
     {
         Artisan::call('db:seed', [
             '--class' => 'TenantRoleSeeder',
+            '--force' => true,
+        ]);
+    }
+
+    protected function seedPermissions()
+    {
+        Artisan::call('db:seed', [
+            '--class' => 'TenantPermissionSeeder',
             '--force' => true,
         ]);
     }

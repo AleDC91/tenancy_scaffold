@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* definizione variabili */
+
+:root{
+    --sidebarWidth: 250px;
+}
+
+
+
+.main-with-navbar{
+padding-top: 72px;
+}
+
+@media screen and (max-width: 1024px) {
+    .main-with-navbar{
+        padding-top: 51px;
+        }
+}
 
 .gradient {
     background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
@@ -9,5 +26,14 @@
 
 .gradient-secondary{
     background: linear-gradient(90deg, #3340d5 0%, #e4db28 100%);
+}
 
+.dashboard-sidebar{
+    width: var(--sidebarWidth);
+    background-color: red;
+}
+
+.msg-box {
+    z-index: 100 !important;
+    margin: 0 auto !important;
 }

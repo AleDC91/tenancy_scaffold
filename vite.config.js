@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/appHeader.js', 
                 'resources/js/appNavDropdown.js',
+                'resources/js/closeAlertBox.js',
             ],
             refresh: true,
         }),
