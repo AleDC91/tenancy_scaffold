@@ -4,31 +4,43 @@
 
 /* definizione variabili */
 
-:root{
+:root {
     --sidebarWidth: 250px;
 }
 
-
-
-.main-with-navbar{
-padding-top: 72px;
+.main-with-navbar {
+    padding-top: 72px;
 }
 
 @media screen and (max-width: 1024px) {
-    .main-with-navbar{
+    .main-with-navbar {
         padding-top: 51px;
-        }
+    }
+    .dashboard-center-container {
+        height: 1200px !important;
+        margin-bottom: 70px !important;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .dashboard-center-container {
+        max-height: 800px !important;
+        margin-bottom: 100px !important;
+    }
+    .dashboard-inbox-container{
+        max-height: 640px !important;
+    }
 }
 
 .gradient {
     background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
 }
 
-.gradient-secondary{
+.gradient-secondary {
     background: linear-gradient(90deg, #3340d5 0%, #e4db28 100%);
 }
 
-.dashboard-sidebar{
+.dashboard-sidebar {
     width: var(--sidebarWidth);
     background-color: red;
 }
@@ -37,3 +49,4 @@ padding-top: 72px;
     z-index: 100 !important;
     margin: 0 auto !important;
 }
+

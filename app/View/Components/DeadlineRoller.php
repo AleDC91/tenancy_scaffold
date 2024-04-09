@@ -2,8 +2,10 @@
 
 namespace App\View\Components;
 
+use App\Models\YearlyDeadline;
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Component;
 
 class DeadlineRoller extends Component
@@ -11,9 +13,10 @@ class DeadlineRoller extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
-        //
+    public Collection $deadlines;
+
+    public function __construct(){
+        $this->deadlines = YearlyDeadline::all();
     }
 
     /**
@@ -21,6 +24,6 @@ class DeadlineRoller extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.deadline-roller');
+        return view('components.deadline-roller', ['deadlines' => $this->deadlines]);
     }
 }
