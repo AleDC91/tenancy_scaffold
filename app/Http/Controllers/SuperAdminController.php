@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Tenant;
 use Carbon\Carbon;
 use Illuminate\Http\Request;

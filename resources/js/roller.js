@@ -52,7 +52,11 @@ while (counter <= yearDays) {
 
         currentDeadlines.forEach((d) => {
             deadlineHTML += `
-            <h4 class="font-bold text-xl px-3 py-1">${d.name}</h4>
+            <h4 class="font-bold text-xl px-3 py-1">
+            <a href="/deadlines/${d.id}">
+            ${d.name}
+            </a>
+            </h4>
             <hr />
             `;
 

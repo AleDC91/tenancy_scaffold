@@ -52,9 +52,9 @@
                                     role="menuitem">Settings</a>
                             </li>
                             <li>
-                                <a href="#"
+                                <a href="/profile"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                    role="menuitem">Earnings</a>
+                                    role="menuitem">Profile</a>
                             </li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}"
@@ -73,9 +73,10 @@
             </div>
         </div>
     </div>
+
 </nav>
 
-<aside id="logo-sidebar "
+<aside id="logo-sidebar"
     class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto">
@@ -84,8 +85,10 @@
             <x-my-nav-link :href="route('tenant.dashboard')" :active="request()->routeIs('tenant.dashboard')" color="green">
                 <x-slot name="icon">
 
-                    <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                    <svg class="w-5 h-5"
+                        aria-hidden="true" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        fill="currentColor" viewBox="0 0 22 21">
                         <path
                             d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                         <path
@@ -107,18 +110,25 @@
                 </x-my-nav-link>
             @endrole
 
-            <x-my-nav-link :href="route('deadlines.index')" :active="request()->routeIs('deadlines.index')" color="green">
+            <x-my-nav-link :href="route('deadlines.index')" :active="request()->routeIs('deadlines.index') || request()->routeIs('deadlines.create')" color="green">
                 <x-slot name="icon">
 
-                    <svg class="w-5 h-5"
-                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
-                        <path
-                            d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
-                        <path
-                            d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
-                    </svg>
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 384 512"
+                    aria-hidden="true" fill="currentColor">
+                    <path d="M360 0H24C10.7 0 0 10.7 0 24v16c0 13.3 10.7 24 24 24 0 91 51 167.7 120.8 192C75 280.3 24 357 24 448c-13.3 0-24 10.7-24 24v16c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24v-16c0-13.3-10.7-24-24-24 0-91-51-167.7-120.8-192C309 231.7 360 155 360 64c13.3 0 24-10.7 24-24V24c0-13.3-10.7-24-24-24zm-75.1 384H99.1c17.1-46.8 52.1-80 92.9-80 40.8 0 75.9 33.2 92.9 80zm0-256H99.1C92 108.5 88 86.7 88 64h208c0 22.8-4 44.6-11.1 64z"/></svg>
                 </x-slot>
                 Deadlines
+            </x-my-nav-link>
+            <x-my-nav-link :href="route('inbox.index')" :active="request()->routeIs('inbox.index')" color="green">
+                <x-slot name="icon">
+
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 512 512"
+                    aria-hidden="true" fill="currentColor">
+                    <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+                </x-slot>
+                Inbox
             </x-my-nav-link>
 
             {{-- <x-my-nav-link :href="route('calendar.index')" :active="request()->routeIs('deadlines.index')" color="green">
@@ -168,3 +178,6 @@
     </div>
     {{ $slot }}
 </div>
+@push('app_scripts')
+    @vite(['resources/js/appNavDropdown'])    
+@endpush

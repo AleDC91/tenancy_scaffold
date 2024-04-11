@@ -12,8 +12,9 @@ use App\Http\Controllers\Tenant\Auth\PasswordController;
 use App\Http\Controllers\Tenant\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Tenant\Auth\RegisteredUserController;
 use App\Http\Controllers\Tenant\Auth\VerifyEmailController;
+use App\Http\Controllers\Tenant\InboxController;
 use App\Http\Controllers\Tenant\TenantController;
-use App\Http\Controllers\YearlyDeadlineController;
+use App\Http\Controllers\Tenant\YearlyDeadlineController;
 use App\Http\Middleware\CheckRole;
 use Illuminate\Support\Facades\Route;
 
@@ -101,5 +102,7 @@ Route::middleware([
         Route::get('/dashboard', [TenantController::class, 'dashboard'])->name('tenant.dashboard');
         Route::get('/admin', [TenantController::class, 'admin'])->name('tenant.admin')->middleware('role:admin');
         Route::resource('/deadlines', YearlyDeadlineController::class)->middleware('role:admin,employee');
+        Route::resource('/inbox', InboxController::class)->middleware('role:admin,employee');
+    
     });
 });

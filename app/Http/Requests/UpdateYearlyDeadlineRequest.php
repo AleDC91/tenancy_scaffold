@@ -22,7 +22,9 @@ class UpdateYearlyDeadlineRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'deadline_name' => 'required|string|max:255',
+            'deadline_description' => 'nullable|string',
+            'deadline_date' => 'required|date',
         ];
     }
 }
