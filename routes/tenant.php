@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Tenant\ProfileController;
 use App\Http\Controllers\Tenant\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Tenant\Auth\ConfirmablePasswordController;
@@ -102,7 +103,9 @@ Route::middleware([
         Route::get('/dashboard', [TenantController::class, 'dashboard'])->name('tenant.dashboard');
         Route::get('/admin', [TenantController::class, 'admin'])->name('tenant.admin')->middleware('role:admin');
         Route::resource('/deadlines', YearlyDeadlineController::class)->middleware('role:admin,employee');
-        Route::resource('/inbox', InboxController::class)->middleware('role:admin,employee');
+        
+        // ricordati di gesitre i permessi. I clienti possono mandare messaggi
+        Route::resource('/inbox', MessageController::class)->middleware('role:admin,employee');
     
     });
 });

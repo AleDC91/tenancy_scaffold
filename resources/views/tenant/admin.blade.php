@@ -1,5 +1,6 @@
 <x-tenant-dashboard>
     <x-sidebar>
-        admin section
+        <x-clients-table />
+        <x-employees-table />
     </x-sidebar>
 </x-tenant-dashboard>
