@@ -8,9 +8,9 @@
         <p class="text-lg">Here you can see your data, load your documents and keep in touch with {{tenant()->domains->first()->company}}</p>
     </div>
     <div class="client-dashboard-buttons w-full flex items-center justify-center gap-3">
-        <button class="py-3 px-4 bg-indigo-800 text-white rounded-lg">
+        <a href={{route('inbox.create')}} class="py-3 px-4 bg-indigo-800 text-white rounded-lg">
             Load Documents
-        </button>
+        </a>
         <button class="py-3 px-4 bg-green-800 text-white rounded-lg">
             Send Email
         </button>

@@ -48,11 +48,11 @@ while (counter <= yearDays) {
         deadline.style.borderTop = "8px solid red";
 
         deadlineHTML = `<button data-popover-target="popover-${counter}" type="button" class="absolute" style="width:${dayWidth}px; height:64px;"></button>
-        <div data-popover id="popover-${counter}" role="tooltip" class="absolute z-50 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">`;
+        <div data-popover id="popover-${counter}" role="tooltip" class="absolute z-50 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">`;
 
         currentDeadlines.forEach((d) => {
             deadlineHTML += `
-            <h4 class="font-bold text-xl px-3 py-1">
+            <h4 class="font-bold text-md px-3 py-1">
             <a href="/deadlines/${d.id}">
             ${d.name}
             </a>

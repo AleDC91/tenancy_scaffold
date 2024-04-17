@@ -42,6 +42,7 @@ class RegisteredUserController extends Controller
                 ]);
                 $this->seedRoles();
                 $this->seedPermissions();
+                $this->seedYearlyDeadlines();
 
                 $user->assignRole('admin');
 
@@ -81,6 +82,13 @@ class RegisteredUserController extends Controller
     {
         Artisan::call('db:seed', [
             '--class' => 'TenantPermissionSeeder',
+            '--force' => true,
+        ]);
+    }
+    protected function seedYearlyDeadlines()
+    {
+        Artisan::call('db:seed', [
+            '--class' => 'YearlyDeadlineSeeder',
             '--force' => true,
         ]);
     }

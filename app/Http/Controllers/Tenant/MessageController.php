@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Tenant;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
 use App\Models\Message;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class MessageController extends Controller
 {
@@ -13,7 +16,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        return View('tenant.inbox.inbox');
     }
 
     /**
@@ -21,7 +24,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        //
+        return View('tenant.inbox.create');
     }
 
     /**
@@ -29,9 +32,21 @@ class MessageController extends Controller
      */
     public function store(StoreMessageRequest $request)
     {
-        //
+    //    dd($request);
+    $request->validate([
+
+        'docs.*' => 'required|mimes:pdf'
+    ]);
+
+    if($files = $request->file('docs')){
+        foreach($files as $file){
+            $extension = $file->getClientOriginalExtension();
+            $filename = time();
+        }
     }
 
+    }
+    
     /**
      * Display the specified resource.
      */
@@ -45,7 +60,6 @@ class MessageController extends Controller
      */
     public function edit(Message $message)
     {
-        //
     }
 
     /**

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Tenant\ProfileController;
 use App\Http\Controllers\Tenant\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Tenant\Auth\ConfirmablePasswordController;
@@ -13,7 +12,7 @@ use App\Http\Controllers\Tenant\Auth\PasswordController;
 use App\Http\Controllers\Tenant\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Tenant\Auth\RegisteredUserController;
 use App\Http\Controllers\Tenant\Auth\VerifyEmailController;
-use App\Http\Controllers\Tenant\InboxController;
+use App\Http\Controllers\Tenant\MessageController;
 use App\Http\Controllers\Tenant\TenantController;
 use App\Http\Controllers\Tenant\YearlyDeadlineController;
 use App\Http\Middleware\CheckRole;
@@ -105,7 +104,9 @@ Route::middleware([
         Route::resource('/deadlines', YearlyDeadlineController::class)->middleware('role:admin,employee');
         
         // ricordati di gesitre i permessi. I clienti possono mandare messaggi
-        Route::resource('/inbox', MessageController::class)->middleware('role:admin,employee');
-    
+        // Route::post('/inbox/store', [MessageController::class, 'store'])->name('inbox.store');
+        // Route::get('/inbox/create', [MessageController::class, 'create'])->middleware('role:client')->name('inbox.create');
+
+        Route::resource('/inbox', MessageController::class);
     });
 });
