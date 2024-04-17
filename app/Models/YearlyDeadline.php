@@ -17,17 +17,27 @@ class YearlyDeadline extends Model
         'date',
     ];
 
-    public function remainingDays(){
+    public function remainingDays()
+    {
         $now = Carbon::now();
-        $deadlineDate = Carbon::createFromFormat('Y-m-d', $this->date); 
+        $deadlineDate = Carbon::createFromFormat('Y-m-d', $this->date);
 
-        return $now->diffInDays($deadlineDate); 
+        return $now->diffInDays($deadlineDate);
     }
-    
-    public function isPassed(){
+
+    public function isPassed()
+    {
         $deadlineDate = Carbon::createFromFormat('Y-m-d', $this->date); // Converti la data della scadenza in un oggetto Carbon
-    
+
         return $deadlineDate->isPast(); // Verifica se la data della scadenza è nel passato
     }
-    
+
+    public function clientTypes()
+    {
+        return $this->belongsToMany(ClientTypes::class, 'annual_deadline_client_type');
+    }
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class, 'client_yearly_deadline');
+    }
 }

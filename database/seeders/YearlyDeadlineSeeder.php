@@ -16,7 +16,6 @@ class YearlyDeadlineSeeder extends Seeder
     {
         $currentYear = Carbon::now()->year;
 
-        // Esempio di dati delle scadenze annuali
         $yearlyDeadlines = [
             [
                 'name' => "Versamento IVA e ritenute - Dicembre " . ($currentYear - 1),

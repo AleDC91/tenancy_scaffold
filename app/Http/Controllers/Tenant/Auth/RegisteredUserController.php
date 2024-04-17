@@ -42,9 +42,15 @@ class RegisteredUserController extends Controller
                 ]);
                 $this->seedRoles();
                 $this->seedPermissions();
-                $this->seedYearlyDeadlines();
-
                 $user->assignRole('admin');
+                $user->assignRole('employee');
+
+                $this->seedYearlyDeadlines();
+                $this->seedClientTypes();
+                $this->seedUsers();
+                $this->seedEmployees();
+                $this->seedClients();
+
 
                 $host = request()->getHost();
                 $parts = explode('.', $host);
@@ -89,6 +95,35 @@ class RegisteredUserController extends Controller
     {
         Artisan::call('db:seed', [
             '--class' => 'YearlyDeadlineSeeder',
+            '--force' => true,
+        ]);
+    }
+
+    protected function seedClientTypes()
+    {
+        Artisan::call('db:seed', [
+            '--class' => 'ClientTypesSeeder',
+            '--force' => true,
+        ]);
+    }
+    protected function seedUsers()
+    {
+        Artisan::call('db:seed', [
+            '--class' => 'UserSeeder',
+            '--force' => true,
+        ]);
+    }
+    protected function seedEmployees()
+    {
+        Artisan::call('db:seed', [
+            '--class' => 'EmployeeSeeder',
+            '--force' => true,
+        ]);
+    }
+    protected function seedClients()
+    {
+        Artisan::call('db:seed', [
+            '--class' => 'ClientSeeder',
             '--force' => true,
         ]);
     }

@@ -14,6 +14,7 @@ class DashboardHeaderSquares extends Component
     public function __construct(
         public string $title,
         public string $color,
+        public $data
     ){}
 
     /**
@@ -21,6 +22,6 @@ class DashboardHeaderSquares extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.dashboard-header-squares');
+        return view('components.dashboard-header-squares', ['data' => $this->data]);
     }
 }

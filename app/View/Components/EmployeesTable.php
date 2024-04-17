@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Employee;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
@@ -15,8 +16,8 @@ class EmployeesTable extends Component
 
     public function __construct()
     {
-        $clientRole = Role::where('name', 'employee')->first();
-        $this->employees = $clientRole->users;
+       
+        $this->employees = Employee::all();
     }
 
 

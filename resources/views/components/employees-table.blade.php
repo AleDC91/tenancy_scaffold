@@ -10,7 +10,10 @@
                     Clients
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Permissions
+                    Position
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Roles
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Actions
@@ -24,19 +27,23 @@
 
                     <th scope="row"
                         class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                        <img class="w-10 h-10 rounded-full" src={{ $employee->profile_image }} alt="Jese image">
+                        <img class="w-10 h-10 rounded-full" src={{ $employee->user->profile_image }} alt="Jese image">
                         <div class="ps-3">
-                            <div class="text-base font-semibold">{{ $employee->name }}</div>
-                            <div class="font-normal text-gray-500">{{ $employee->email }}</div>
+                            <div class="text-base font-semibold">{{ $employee->user->name }}</div>
+                            <div class="font-normal text-gray-500">{{ $employee->user->email }}</div>
                         </div>
                     </th>
                     <td class="px-6 py-4">
-                        25
+                        {{ $employee->clients->count() }}
                     </td>
                     <td class="px-6 py-4">
-                        permissions list
+                        {{ $employee->position }}
                     </td>
-
+                    <td class="px-6 py-4">
+                        @foreach($employee->user->roles as $role)
+                        <div>{{$role->name}}</div>
+                        @endforeach
+                    </td>
                     <td class="px-6 py-4">
                         <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit
                         </a>

@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Client;
 use App\Models\User;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -16,8 +17,7 @@ class ClientsTable extends Component
 
     public function __construct()
     {
-        $clientRole = Role::where('name', 'client')->first();
-        $this->clients = $clientRole->users;
+        $this->clients = Client::all();
     }
 
     public function render(): View|Closure|string

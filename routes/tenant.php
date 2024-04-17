@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Tenant\ClientController;
 use App\Http\Controllers\Tenant\ProfileController;
 use App\Http\Controllers\Tenant\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Tenant\Auth\ConfirmablePasswordController;
@@ -12,10 +13,12 @@ use App\Http\Controllers\Tenant\Auth\PasswordController;
 use App\Http\Controllers\Tenant\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Tenant\Auth\RegisteredUserController;
 use App\Http\Controllers\Tenant\Auth\VerifyEmailController;
+use App\Http\Controllers\Tenant\EmployeeController;
 use App\Http\Controllers\Tenant\MessageController;
 use App\Http\Controllers\Tenant\TenantController;
 use App\Http\Controllers\Tenant\YearlyDeadlineController;
 use App\Http\Middleware\CheckRole;
+use App\Models\Employee;
 use Illuminate\Support\Facades\Route;
 
 use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
@@ -108,5 +111,8 @@ Route::middleware([
         // Route::get('/inbox/create', [MessageController::class, 'create'])->middleware('role:client')->name('inbox.create');
 
         Route::resource('/inbox', MessageController::class);
+        Route::resource('/clients', ClientController::class)->middleware('role:admin,employee');
+        Route::resource('/employees', EmployeeController::class)->middleware('role:admin');
+
     });
 });
