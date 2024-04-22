@@ -13,6 +13,8 @@ use App\Http\Controllers\Tenant\Auth\PasswordController;
 use App\Http\Controllers\Tenant\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Tenant\Auth\RegisteredUserController;
 use App\Http\Controllers\Tenant\Auth\VerifyEmailController;
+use App\Http\Controllers\Tenant\ClientAnnualDeadlineController;
+use App\Http\Controllers\Tenant\ClientTypesController;
 use App\Http\Controllers\Tenant\EmployeeController;
 use App\Http\Controllers\Tenant\MessageController;
 use App\Http\Controllers\Tenant\TenantController;
@@ -113,6 +115,7 @@ Route::middleware([
         Route::resource('/inbox', MessageController::class);
         Route::resource('/clients', ClientController::class)->middleware('role:admin,employee');
         Route::resource('/employees', EmployeeController::class)->middleware('role:admin');
-
+        Route::resource('/categories', ClientTypesController::class)->middleware('role:admin');
+        Route::put('/annualdeadline/{client}/{deadline}', [ClientAnnualDeadlineController::class, 'update']);
     });
 });

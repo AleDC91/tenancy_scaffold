@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreClientAnnualDeadlineRequest;
 use App\Http\Requests\UpdateClientAnnualDeadlineRequest;
+use App\Models\Client;
 use App\Models\ClientAnnualDeadline;
+use App\Models\YearlyDeadline;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class ClientAnnualDeadlineController extends Controller
 {
@@ -52,9 +55,19 @@ class ClientAnnualDeadlineController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateClientAnnualDeadlineRequest $request, ClientAnnualDeadline $clientAnnualDeadline)
+    public function update(UpdateClientAnnualDeadlineRequest $request, Client $client, YearlyDeadline $deadline)
     {
-        //
+        try {
+            $client->yearlyDeadlines()->updateExistingPivot($deadline->id, ['status' => 'completed']);
+            return redirect()->back()->with('success', 'Marked as Done!');
+        } catch (\Exception $e) {
+
+            if ($e instanceof AuthorizationException) {
+                return redirect()->back()->with('error', "You're not allowed to update this deadline status.");
+            } else {
+                return redirect()->back()->with('error', "Error while updating deadline status: " . $e->getMessage());
+            }
+        }
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
 use App\Models\Message;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
@@ -32,27 +33,27 @@ class MessageController extends Controller
      */
     public function store(StoreMessageRequest $request)
     {
-    //    dd($request);
-    $request->validate([
-
-        'docs.*' => 'required|mimes:pdf'
-    ]);
-
-    if($files = $request->file('docs')){
-        foreach($files as $file){
-            $extension = $file->getClientOriginalExtension();
-            $filename = time();
+        // dd($request);
+        try {
+            $message = new Message();
+            $message->user_id = $request->user_id;
+            $message->body = $request->message;
+            $message->priority = $request->priority;
+            $message->save();
+            return back()->with('success', 'message sent successfully!');
+        } catch (\Exception $e) {
+            $errorMsg = $e->getMessage();
+            return back()->with('error', $errorMsg);
         }
     }
 
-    }
-    
     /**
      * Display the specified resource.
      */
-    public function show(Message $message)
+    public function show(int $messageId)
     {
-        //
+        $message = Message::find($messageId);
+        return view('tenant.inbox.show', ['message' => $message]);
     }
 
     /**
@@ -65,9 +66,16 @@ class MessageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMessageRequest $request, Message $message)
+    public function update(UpdateMessageRequest $request, int $messageId)
     {
-        //
+
+        $message = Message::find($messageId);
+        $message->update([
+            'read' => $request->read,
+            'read_at' => Carbon::now()
+        ]);
+
+        return response()->json(['message' => 'Messaggio aggiornato correttamente', 'data' => $message], 200);
     }
 
     /**

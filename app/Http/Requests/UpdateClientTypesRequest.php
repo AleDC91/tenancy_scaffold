@@ -11,7 +11,7 @@ class UpdateClientTypesRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -19,10 +19,19 @@ class UpdateClientTypesRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+
     public function rules(): array
     {
         return [
-            //
+            "category_name" => "required|string|max:255"
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            "category_name.required" => "The category name is required",
+            "category_name.max" => "The category name max length is 255",
         ];
     }
 }

@@ -19,12 +19,18 @@
             Inbox
         </h2>
         <div class="h-full overflow-auto">
-            <x-inbox />
+            <x-messages-table />
         </div>
     </div>
 
-    <div class="col-span-1 xl:col-span-5 gap-3 my-5 h-80 overflow-auto">
-        <x-deadlines />
+    <div class="col-span-1 xl:col-span-5 gap-3 my-5 h-80">
+
+        <h2 class="mt-4 mb-3 text-2xl">
+            Next Deadlines
+        </h2>
+        <div class="h-full w-full overflow-auto">
+            <x-deadlines />
+        </div>
     </div>
 
 </div>

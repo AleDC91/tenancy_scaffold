@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('annual_deadline_client_types', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('client_id');
+            $table->unsignedBigInteger('client_type_id');
             $table->unsignedBigInteger('annual_deadline_id');
-            $table->foreign('client_id')->references('user_id')->on('clients')->onDelete('cascade');
+            $table->foreign('client_type_id')->references('id')->on('client_types')->onDelete('cascade');
             $table->foreign('annual_deadline_id')->references('id')->on('yearly_deadlines')->onDelete('cascade');
-
+            $table->timestamps();
 
         });
     }

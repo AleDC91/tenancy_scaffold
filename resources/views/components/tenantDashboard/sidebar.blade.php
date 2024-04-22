@@ -130,7 +130,7 @@
                 </x-slot>
                 Inbox
             </x-my-nav-link>
-            <x-my-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index') || request()->routeIs('deadlines.create')" color="green">
+            <x-my-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index') || request()->routeIs('clients.create')" color="green">
                 <x-slot name="icon">
                     <svg class="w-5 h-5" 
                     xmlns="http://www.w3.org/2000/svg" 
@@ -140,6 +140,7 @@
                 </x-slot>
                 Clients
             </x-my-nav-link>
+            @role('admin')
             <x-my-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.index') || request()->routeIs('employees.create')" color="green">
                 <x-slot name="icon">
 
@@ -150,6 +151,7 @@
                 </x-slot>
                 Employees
             </x-my-nav-link>
+            @endrole
 
             {{-- <x-my-nav-link :href="route('calendar.index')" :active="request()->routeIs('deadlines.index')" color="green">
                 <x-slot name="icon">
@@ -196,6 +198,7 @@
             </x-error-alert>
         @endif
     </div>
+   
     {{ $slot }}
 </div>
 @push('app_scripts')

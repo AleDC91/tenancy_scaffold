@@ -4,12 +4,14 @@ var navcontent = document.getElementById("nav-content");
 var navaction = document.getElementById("navAction");
 var brandname = document.getElementById("brandname");
 var toToggle = document.querySelectorAll(".toggleColour");
+const logoHeader = document.getElementById("logo-header");
 
 document.addEventListener("scroll", function() {
     /*Apply classes for slide in bar*/
     scrollpos = window.scrollY;
 
     if (scrollpos > 10) {
+        logoHeader.setAttribute("src", "/images/duetect_logo.png");
         header.classList.add("bg-white");
         navaction.classList.remove("bg-white");
         navaction.classList.add("gradient");
@@ -24,6 +26,7 @@ document.addEventListener("scroll", function() {
         navcontent.classList.remove("bg-gray-100");
         navcontent.classList.add("bg-white");
     } else {
+        logoHeader.setAttribute("src", "/images/duetect_logo_white.png");
         header.classList.remove("bg-white");
         navaction.classList.remove("gradient");
         navaction.classList.add("bg-white");

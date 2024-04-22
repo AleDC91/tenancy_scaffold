@@ -24,7 +24,9 @@ class StoreYearlyDeadlineRequest extends FormRequest
         return [
             'deadline_name' => 'required|string|max:255', 
             'deadline_description' => 'nullable|string', 
-            'deadline_date' => 'required|date'
+            'deadline_date' => 'required|date',
+            'client_types' => 'required|array', // Assicurati che i client_types siano un array
+            'client_types.*' => 'exists:client_types,id', // Assicurati che ogni client_type esista nella tabella client_types
         ];
     }
 }

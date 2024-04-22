@@ -11,7 +11,7 @@ class UpdateEmployeeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,23 @@ class UpdateEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'employee_name' => 'required|string|max:255',
+            'employee_email' => 'required|email',
+            'employee_salary' => 'nullable|numeric',
+            'employee_position' => 'nullable|string|max:255',
+            'employee_hire_date' => 'required|date',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'employee_name.required' => 'Il nome dell\'impiegato è obbligatorio.',
+            'employee_email.required' => 'L\'indirizzo email dell\'impiegato è obbligatorio.',
+            'employee_email.email' => 'Inserisci un indirizzo email valido per l\'impiegato.',
+            'employee_password.required' => 'La password dell\'impiegato è obbligatoria.',
+            'employee_hire_date.required' => 'La data di assunzione dell\'impiegato è obbligatoria.',
+            'employee_hire_date.date' => 'Inserisci una data di assunzione valida per l\'impiegato.',
         ];
     }
 }

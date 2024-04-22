@@ -14,13 +14,15 @@
                 <th scope="col" class="px-6 py-3">
                     Days
                 </th>
+                @role('admin')
                 <th scope="col" class="px-6 py-3 text-center">
                     Actions
                 </th>
+                @endrole
             </tr>
         </thead>
         <tbody>
-            @foreach ($deadlines as $deadline)
+            @foreach ($deadlines->sortBy('date') as $deadline)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                         <a href="/deadlines/{{ $deadline->id }}">
@@ -40,23 +42,26 @@
                             } elseif (strtotime($deadline->date) == strtotime('today')) {
                                 echo 'Today!';
                             } else {
-                               echo now()->diffInDays($deadline->date) . " days";
+                                echo now()->diffInDays($deadline->date) . ' days';
                             }
 
                         @endphp
                     </td>
-                    <td class="px-6 py-4">
-                        <div class="flex justify-evenly">
-                            <a href="{{ route('deadlines.edit', ['deadline' => $deadline]) }}"
-                                class="font-medium text-blue-600  hover:underline me-5">Edit</a>
-                            <form action="{{ route('deadlines.destroy', ['deadline' => $deadline]) }}" method="POST"
-                                onsubmit="return confirm('Are you sure you want to delete this deadline?')">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="font-medium text-red-600  hover:underline">Delete</button>
-                            </form>
-                        </div>
-                    </td>
+                    @role('admin')
+                        <td class="px-6 py-4">
+                            <div class="flex justify-evenly">
+                                <a href="{{ route('deadlines.edit', ['deadline' => $deadline]) }}"
+                                    class="font-medium text-blue-600  hover:underline me-5">Edit</a>
+
+                                <form action="{{ route('deadlines.destroy', ['deadline' => $deadline]) }}" method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this deadline?')">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="font-medium text-red-600  hover:underline">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    @endrole
                 </tr>
             @endforeach
         </tbody>

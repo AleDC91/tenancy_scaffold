@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Client;
+use App\Models\ClientTypes;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,6 +21,7 @@ class ClientSeeder extends Seeder
         if (!Role::where('name', 'client')->first()) {
             Role::create(['name' => 'client']);
         }
+        $clientTypes = ClientTypes::all();
 
         // Ottieni tutti gli utenti che non hanno un ruolo
         $usersWithoutRole = User::whereDoesntHave('roles')->get();
@@ -32,7 +34,7 @@ class ClientSeeder extends Seeder
         
                 // Crea un nuovo record nella tabella 'clients'
                 $client = new Client();
-                $client->user_id = $user->id;
+                $client->id = $user->id;
         
                 // Aggiungi qui i dati relativi al cliente
                 $client->regime_id = fake()->numberBetween(1, 3);

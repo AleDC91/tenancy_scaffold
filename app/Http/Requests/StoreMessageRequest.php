@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreMessageRequest extends FormRequest
 {
@@ -21,8 +22,25 @@ class StoreMessageRequest extends FormRequest
      */
     public function rules(): array
     {
+        $userId = Auth::id();
+
         return [
-            //
+            'message' => 'required|string|max:255',
+            'user_id' => 'required|numeric|exists:users,id|in:'.$userId,
+            'priority' => 'nullable|in:normal,urgent'
         ];
+    }
+
+    protected function prepareForValidation()
+{
+    $this->merge([
+        'priority' => $this->input('priority') ? 'urgent' : 'normal',
+    ]);
+}
+
+
+    public function messages()
+    {
+        return ['user_id.in' => 'il messaggio deve essere spedito dall\'utente loggato'];
     }
 }

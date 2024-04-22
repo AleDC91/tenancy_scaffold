@@ -1,11 +1,12 @@
 @php
     use Illuminate\Support\Facades\DB;
     if (Auth::check()) {
-        $domain = DB::table('domains')
+        $domainRecord = DB::table('domains')
             ->where('tenant_id', Auth::user()->id)
-            ->first()->domain;
+            ->first();
+        
+        $domain = $domainRecord ? $domainRecord->domain : null;
     }
-
 @endphp
 
 <x-app-layout>
@@ -18,13 +19,12 @@
             <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
                 <!--Left Col-->
                 <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-                    <p class="uppercase tracking-loose w-full">What business are you?</p>
+                    <p class="uppercase tracking-loose w-full">Master your schedule, seize the day!</p>
                     <h1 class="my-4 text-5xl font-bold leading-tight">
-                        Main Hero Message to sell yourself!
+                        All your deadlines in one place!
                     </h1>
                     <p class="leading-normal text-2xl mb-8">
-                        Sub-hero message, not too long and not too short. Make it just right!
-                    </p>
+                        Simplify due dates management for your studio's clients. </p>
                     @auth
                         <a role="button"
                             href={{ 'http://' . $domain . '.' . config('tenancy.central_domains')[1] . ':8000/' }}
@@ -424,7 +424,7 @@
                     <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
                 </div>
                 <div class="flex flex-col sm:flex-row justify-center pt-12 my-12 sm:my-4">
-                    <div
+                    {{-- <div
                         class="flex flex-col w-5/6 lg:w-1/4 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-4">
                         <div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
                             <div class="p-8 text-3xl font-bold text-center border-b-4">
@@ -448,33 +448,33 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div
                         class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-lg bg-white mt-4 sm:-mt-6 shadow-lg z-10">
                         <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                            <div class="w-full p-8 text-3xl font-bold text-center">Basic</div>
+                            <div class="w-full p-8 text-3xl font-bold text-center">All Features!</div>
                             <div class="h-1 w-full gradient my-0 py-0 rounded-t"></div>
                             <ul class="w-full text-center text-base font-bold">
-                                <li class="border-b py-4">Thing</li>
-                                <li class="border-b py-4">Thing</li>
-                                <li class="border-b py-4">Thing</li>
-                                <li class="border-b py-4">Thing</li>
+                                <li class="border-b py-4">Add Deadlines</li>
+                                <li class="border-b py-4">Handle employees</li>
+                                <li class="border-b py-4">Assign Deadlines to clients</li>
+                                <li class="border-b py-4">Keep in touch with clients</li>
                             </ul>
                         </div>
                         <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
                             <div class="w-full pt-6 text-4xl font-bold text-center">
-                                £x.99
-                                <span class="text-base">/ per user</span>
+                                €9.99
+                                <span class="text-base">/ per month</span>
                             </div>
                             <div class="flex items-center justify-center">
-                                <button
+                                <a href="/register"
                                     class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                                     Sign Up
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div
+                    {{-- <div
                         class="flex flex-col w-5/6 lg:w-1/4 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-4">
                         <div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
                             <div class="p-8 text-3xl font-bold text-center border-b-4">
@@ -498,7 +498,7 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>

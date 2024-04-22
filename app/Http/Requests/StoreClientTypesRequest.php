@@ -11,7 +11,7 @@ class StoreClientTypesRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class StoreClientTypesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "category_name" => "required|string|max:255"
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            "category_name.required" => "The category name is required",
+            "category_name.max" => "The category name max length is 255",
         ];
     }
 }

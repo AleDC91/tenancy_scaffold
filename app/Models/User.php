@@ -58,4 +58,13 @@ class User extends Authenticatable
     {
         return $this->roles()->where('name', 'admin')->exists();
     }
+
+    public function employee()
+    {
+        return $this->hasOne(Employee::class);
+    }
+
+    public function client(){
+        return $this->hasOne(Client::class);
+    }
 }

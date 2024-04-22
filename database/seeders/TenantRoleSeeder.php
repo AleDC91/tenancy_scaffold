@@ -7,6 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class TenantRoleSeeder extends Seeder
@@ -16,8 +17,11 @@ class TenantRoleSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::create(['name' => 'admin']);
+        $admin = Role::create(['name' => 'admin']);
         Role::create(['name' => 'employee']);
         Role::create(['name' => 'client']);
+
+        $permissionTodeleteUser = Permission::create(['name' => 'delete user']);
+        $admin->givePermissionTo($permissionTodeleteUser);
     }
 }

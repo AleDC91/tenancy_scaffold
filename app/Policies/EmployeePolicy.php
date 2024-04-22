@@ -45,7 +45,17 @@ class EmployeePolicy
      */
     public function delete(User $user, Employee $employee): bool
     {
-        //
+        // Verifica se l'utente ha il permesso di cancellare employee
+        if (!$user->hasPermissionTo('delete employees')) {
+            return false;
+        }
+
+        // Verifica se employee da cancellare ha il permesso di amministratore
+        if ($employee->hasRole('admin')) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

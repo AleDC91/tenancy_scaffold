@@ -15,9 +15,11 @@
                 <th scope="col" class="px-6 py-3">
                     Roles
                 </th>
+
                 <th scope="col" class="px-6 py-3">
                     Actions
                 </th>
+   
             </tr>
         </thead>
         <tbody>
@@ -44,10 +46,22 @@
                         <div>{{$role->name}}</div>
                         @endforeach
                     </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit
-                        </a>
+    
+                    @role('admin')
+                    <td>
+
+                        <div class="flex justify-evenly">
+                            <a href="{{ route('employees.edit', ['employee' => $employee]) }}"
+                                class="font-medium text-blue-600  hover:underline me-5">Edit</a>
+                            <form action="{{ route('employees.destroy', ['employee' => $employee]) }}" method="POST"
+                                onsubmit="return confirm('Are you sure you want to delete this employee?')">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="font-medium text-red-600  hover:underline">Delete</button>
+                            </form>
                     </td>
+                @endrole
+    
                 </tr>
             @endforeach
 

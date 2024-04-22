@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,13 @@ class MessageFactory extends Factory
      */
     public function definition(): array
     {
+        $clientId = Client::inRandomOrder()->first()->id;
+
         return [
-            //
+            'user_id' => $clientId, 
+            'body' => fake()->paragraph,
+            'priority' => fake()->randomElement(['normal', 'urgent']),
+            'read' => fake()->boolean(),
         ];
     }
 }

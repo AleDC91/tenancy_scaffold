@@ -34,10 +34,10 @@ class YearlyDeadline extends Model
 
     public function clientTypes()
     {
-        return $this->belongsToMany(ClientTypes::class, 'annual_deadline_client_type');
+        return $this->belongsToMany(ClientTypes::class, 'annual_deadline_client_types', 'annual_deadline_id', 'client_type_id');
     }
     public function clients()
     {
-        return $this->belongsToMany(Client::class, 'client_yearly_deadline');
+        return $this->belongsToMany(Client::class, 'client_annual_deadlines', 'deadline_id', 'client_id');
     }
 }

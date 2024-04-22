@@ -16,19 +16,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->date('hire_date');
             $table->unsignedBigInteger('salary');
-            $table->enum('position', [
-                'Commercialista',
-                'Revisore contabile',
-                'Consulente fiscale',
-                'Responsabile amministrativo',
-                'Esperto in risorse umane',
-                'Assistente contabile',
-                'Segretario/a',
-                'Specialista in tasse e imposte',
-                'Analista finanziario',
-                'Assistente fiscale',
-                'stagista'
-            ]);
+            $table->string('position');
             $table->timestamps();
         });
     }

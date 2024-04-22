@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('id');
+            $table->foreign('id')->references('id')->on('users');
             $table->smallInteger('regime_id');
             $table->string('job');
             $table->text('job_description')->nullable();
@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('CF');
             $table->boolean('properties');
             $table->text('clinic_address')->nullable();
-            $table->unsignedBigInteger('employee_id');
-            $table->foreign('employee_id')->references('user_id')->on('employees');
+            $table->unsignedBigInteger('employee_id')->default(1);
+            $table->foreign('employee_id')->references('user_id')->on('employees');            
             $table->timestamps();
         });
     }

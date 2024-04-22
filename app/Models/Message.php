@@ -17,9 +17,9 @@ class Message extends Model
         'read_at'
     ];
     
-    public function user()
+    public function client()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Client::class, 'user_id');
     }
 
 }

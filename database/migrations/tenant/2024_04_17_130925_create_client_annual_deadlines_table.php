@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('deadline_id');
-            $table->foreign('client_id')->references('user_id')->on('clients')->onDelete('cascade');
+            $table->enum('status', ['pending', 'completed', 'missed']);
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('deadline_id')->references('id')->on('yearly_deadlines')->onDelete('cascade');
-
+            $table->timestamps();
         });
     }
 

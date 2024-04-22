@@ -32,21 +32,25 @@ class Client extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id');
     }
 
     public function clientTypes()
     {
-        return $this->belongsToMany(ClientTypes::class, 'client_client_type');
+        return $this->belongsToMany(ClientTypes::class, 'client_client_types', 'client_id', 'client_type_id');
     }
 
     public function yearlyDeadlines()
     {
-        return $this->belongsToMany(YearlyDeadline::class, 'client_annual_deadlines');
+        return $this->belongsToMany(YearlyDeadline::class, 'client_annual_deadlines', 'client_id', 'deadline_id');
     }
-    
+
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'employee_id', 'user_id');
+    }
+
+    public function messages(){
+        return $this->hasMany(Message::class, 'user_id') ;
     }
 }

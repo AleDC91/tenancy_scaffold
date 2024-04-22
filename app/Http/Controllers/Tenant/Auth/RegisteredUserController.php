@@ -50,8 +50,10 @@ class RegisteredUserController extends Controller
                 $this->seedUsers();
                 $this->seedEmployees();
                 $this->seedClients();
-
-
+                $this->seedClientClientTypes();
+                $this->seedAnnualDeadlineClientTypes();
+                $this->seedClientAnnualDeadline();
+                $this->seedMessages();
                 $host = request()->getHost();
                 $parts = explode('.', $host);
                 $domainName = $parts[0];
@@ -124,6 +126,36 @@ class RegisteredUserController extends Controller
     {
         Artisan::call('db:seed', [
             '--class' => 'ClientSeeder',
+            '--force' => true,
+        ]);
+    }
+    protected function seedClientClientTypes()
+    {
+        Artisan::call('db:seed', [
+            '--class' => 'ClientClientTypeSeeder',
+            '--force' => true,
+        ]);
+    }
+
+    protected function seedAnnualDeadlineClientTypes()
+    {
+        Artisan::call('db:seed', [
+            '--class' => 'AnnualDeadlineClientTypeSeeder',
+            '--force' => true,
+        ]);
+    }
+    protected function seedClientAnnualDeadline()
+    {
+        Artisan::call('db:seed', [
+            '--class' => 'ClientAnnualDeadlineSeeder',
+            '--force' => true,
+        ]);
+    }
+
+    protected function seedMessages()
+    {
+        Artisan::call('db:seed', [
+            '--class' => 'MessageSeeder',
             '--force' => true,
         ]);
     }
