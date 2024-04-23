@@ -1,13 +1,25 @@
 document.addEventListener("DOMContentLoaded", function() {
+console.log(clientsDeadlines);
+const completed = clientsDeadlines.filter(deadline => deadline.status === "completed");
+const pending = clientsDeadlines.filter(deadline => deadline.status === "pending");
+const missed = clientsDeadlines.filter(deadline => deadline.status === "missed");
+
+const tot = completed.length + missed.length + pending.length;
+const percCompleted = completed.length / tot * 100;
+const percPending = pending.length / tot * 100;
+const percMissed = missed.length / tot * 100;
+
+console.log(completed.length);
+console.log(pending.length);
 
     var pieChartOne = new CanvasJS.Chart("pie-chart-one-container", {
         theme: "light2",
         animationEnabled: true,
         title: {
-            text: "Client categories"
+            text: "Monthly Deadlines"
         },
         subtitles: [{
-            text: "United Kingdom, 2016",
+            text: "Comlpetion Percentage",
             fontSize: 16
         }],
         data: [{
@@ -18,11 +30,11 @@ document.addEventListener("DOMContentLoaded", function() {
             yValueFormatString: "###0.0\"%\"",
             click: explodePie,
             dataPoints: [
-                { y: 42, label: "Gas" },
-                { y: 21, label: "Nuclear"},
-                { y: 24.5, label: "Renewable" },
-                { y: 9, label: "Coal" },
-                { y: 3.1, label: "Other Fuels" }
+                { y: percPending, label: "Pending"},
+                { y: percCompleted, label: "Completed" },
+                { y: percMissed, label: "Missed"},
+
+                
             ]
         }]
     });

@@ -30,7 +30,6 @@ class EmployeeObserver
      */
     public function deleting(Employee $employee): void
     {
-         // Trova il primo Employee con ruolo admin
          $admin = User::role('admin')->whereHas('employee')->first();
 
          if ($admin) {

@@ -37,14 +37,13 @@ class StripeController extends Controller
             'domain' => $request->domain
         ]);
 
-        // dd($request);
         \Stripe\Stripe::setApiKey(config('stripe.sk'));
         
         $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [
                 [
-                    'price' => 'price_1P8TEAI03GN4oZwS1Bjz3Awr', 
+                    'price' => 'price_1P8degI03GN4oZwS3DHEEFlb', 
                     'quantity' => 1,
                 ]
             ],
@@ -78,7 +77,7 @@ class StripeController extends Controller
             'company' => $userData['company']
         ]);
 
-        session()->forget('user');
+        // session()->forget('user');
         $user->tenants()->attach($tenant->id);
 
         event(new Registered($user));

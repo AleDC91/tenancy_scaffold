@@ -42,7 +42,7 @@
                  <tr data-message-id="{{ $message->id }}" style="cursor:pointer;" class="{{ $class }}">
 
                      <td class="px-6 py-4 max-w-md">{{ $message->created_at->format('Y-m-d') }}</td>
-                     <td class="px-6 py-4 max-w-md font-bold">{{ $message->client->user->name }}</td>
+                     <td class="px-6 py-4 max-w-md font-bold">{{$message->client ? $message->client->user->name : "" }}</td>
 
                      <td class="px-6 py-4 max-w-md">
                          {{ strlen($message->body) < 50 ? $message->body : Str::limit($message->body, 50) . '...' }}

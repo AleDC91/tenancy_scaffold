@@ -34,11 +34,13 @@
     </div>
 
 </div>
-<div class="grid grid-cols-1 xl:grid-cols-4 gap-5 xl:mt-5">
-    <div class="col-span-1 xl:col-span-2">
-        <x-pie-chart-one />
+@role('admin')
+    <div class="grid grid-cols-1 xl:grid-cols-4 gap-5 xl:mt-5 mb-20">
+        <div class="col-span-1 xl:col-span-2">
+            <x-pie-chart-one />
+        </div>
+        <div class="col-span-1 xl:col-span-2">
+            <x-graph-one />
+        </div>
     </div>
-    <div class="col-span-1 xl:col-span-2">
-        <x-graph-one />
-    </div>
-</div>
+@endrole

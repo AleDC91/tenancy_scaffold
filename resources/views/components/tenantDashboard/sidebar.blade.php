@@ -110,7 +110,7 @@
                 </x-my-nav-link>
             @endrole
 
-            <x-my-nav-link :href="route('deadlines.index')" :active="request()->routeIs('deadlines.index') || request()->routeIs('deadlines.create')" color="green">
+            <x-my-nav-link :href="route('deadlines.index')" :active="request()->routeIs('deadlines.index') || request()->routeIs('deadlines.create') || request()->routeIs('deadlines.show') || request()->routeIs('deadlines.edit')" color="green">
                 <x-slot name="icon">
 
                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" 
@@ -120,7 +120,7 @@
                 </x-slot>
                 Deadlines
             </x-my-nav-link>
-            <x-my-nav-link :href="route('inbox.index')" :active="request()->routeIs('inbox.index')"  color="green">
+            <x-my-nav-link :href="route('inbox.index')" :active="request()->routeIs('inbox.index') || request()->routeIs('inbox.show')"  color="green">
                 <x-slot name="icon">
 
                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" 
@@ -130,7 +130,7 @@
                 </x-slot>
                 Inbox
             </x-my-nav-link>
-            <x-my-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index') || request()->routeIs('clients.create')" color="green">
+            <x-my-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index') || request()->routeIs('clients.create') || request()->routeIs('clients.show') || request()->routeIs('clients.edit')" color="green">
                 <x-slot name="icon">
                     <svg class="w-5 h-5" 
                     xmlns="http://www.w3.org/2000/svg" 
@@ -141,7 +141,7 @@
                 Clients
             </x-my-nav-link>
             @role('admin')
-            <x-my-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.index') || request()->routeIs('employees.create')" color="green">
+            <x-my-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.index') || request()->routeIs('employees.create') || request()->routeIs('employees.show') || request()->routeIs('employees.edit')" color="green">
                 <x-slot name="icon">
 
                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" 

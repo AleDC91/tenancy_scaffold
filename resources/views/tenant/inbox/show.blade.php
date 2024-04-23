@@ -6,7 +6,13 @@
 
             <div class="flex items-center">
                 <h4 class="text-xl my-5">Sent by: &nbsp;<span class="ms-3 font-bold">
-                        <a href="{{route('clients.show', ['client' => $message->client])}}">{{ $message->client->user->name }}</a></span>
+                        @if ($message->client)
+                            <a
+                                href="{{ route('clients.show', ['client' => $message->client]) }}">{{ $message->client->user->name }}</a>
+                        @else
+                            <a href="#">Nome</a>
+                        @endif
+                    </span>
                 </h4>
                 @php
                     $class = '';

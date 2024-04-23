@@ -11,8 +11,8 @@
                 </a>
             </h1>
             <div class="flex justify-center items-center mt-24">
-                <div class="rounded-full overflow-hidden">
-                    <img src={{ asset($client->user->profile_image) }} alt="">
+                <div class="w-96 h-96 rounded-full overflow-hidden me-12">
+                    <img class="w-full h-full" src={{ asset($client->user->profile_image) }} alt="">
                 </div>
                 <div>
                     <div class="mb-4">

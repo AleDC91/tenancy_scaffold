@@ -25,6 +25,6 @@
                 {{ $slot }}
             </span>
         </div>
-        <span class="h-auto bg-{{$color}}-500 w-2 float-end rounded-s-md {{$show}}">&nbsp;</span>
+        <span class="h-auto bg-{{$color}}-600 w-2 float-end rounded-s-md {{$show}}">&nbsp;</span>
     </a>
 </li>
